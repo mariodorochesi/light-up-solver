@@ -26,10 +26,16 @@ class Casilla:
         return self.value == 'A'
 
     def allows_bulb(self):
-        return not self.is_block() and not self.is_bulb() and self.value != 'X' and not self.isLit
+        return (not self.is_block()) and (not self.is_bulb()) and (self.value != 'X') and (not self.isLit)
 
     def empty_not_lit(self):
         return self.value == 'B' and not self.isLit
 
     def is_empty(self):
         return self.value == 'B'
+
+    def is_blocked(self):
+        return self.value == 'X'
+
+    def can_block(self):
+        return (not self.is_block()) and (not self.is_blocked) 

@@ -17,25 +17,23 @@ class DFS:
         self.stack = list()
         if initial_state.is_final_state():
             print('El estado ingresado ya es solucion')
-            sys.exit(0)
-        else:
-            if show_initial_instance_name:
-                print('Inicializando DFS para resolver : {}'.format(initial_state.file_name))
-            if show_initial_state:
-                print('Estado Inicial :')
-                print(initial_state)
-            # Se inserta el primer elemento en la Pila
-            self.stack.append(initial_state)
-            # Configuracion para encontrar solucion final
-            self.show_solution = show_solution
-            # Configuracion para mostrar tiempo tomado
-            self.show_execution_time = show_execution_time
-            # Configuracion para mostrar notificaciones de progreso
-            self.notify_progress = notify_progress
-            # Configuracion para cada cuantas iteraciones mostrar progreso
-            self.notify_iterations = notify_iterations
-            # Configuracion para mostrar cantidad de iteraciones para llegar a solucion
-            self.show_iterations = show_iterations
+        if show_initial_instance_name:
+            print('Inicializando DFS para resolver : {}'.format(initial_state.file_name))
+        if show_initial_state:
+            print('Estado Inicial :')
+            print(initial_state)
+        # Se inserta el primer elemento en la Pila
+        self.stack.append(initial_state)
+        # Configuracion para encontrar solucion final
+        self.show_solution = show_solution
+        # Configuracion para mostrar tiempo tomado
+        self.show_execution_time = show_execution_time
+        # Configuracion para mostrar notificaciones de progreso
+        self.notify_progress = notify_progress
+        # Configuracion para cada cuantas iteraciones mostrar progreso
+        self.notify_iterations = notify_iterations
+        # Configuracion para mostrar cantidad de iteraciones para llegar a solucion
+        self.show_iterations = show_iterations
     
     def solve(self):
         # Se define un contador para calcular la cantidad de iteraciones

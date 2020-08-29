@@ -82,7 +82,11 @@ class State:
         '''
         actions = list()
 
-        
+        '''
+            Revisa las casillas de arriba, abajo, izq y derecha
+            y si en alguna puede crear una transicion valida
+            entonces agrega a la lista de acciones y luego retorna
+        '''  
         for i in range(1, self.tamano-1):
             for j in range(1, self.tamano-1):
                 if self.tablero[i][j].is_numeric_block():
@@ -103,6 +107,10 @@ class State:
                         if self.copy().transition(action).is_valid_state():
                             actions.append(action)
                 if (len(actions) > 0) : return actions
+
+        '''
+            Pongo o no pongo una casilla?
+        '''
 
         for i in range(1, self.tamano-1):
             for j in range(1, self.tamano-1):
@@ -230,12 +238,14 @@ class StatePreProcessor:
         self.state = state
 
     def process_state(self):
-        print('Preprocesando : ')
         empty = self.state.tamano * self.state.tamano
         while(self.get_empty() < empty):
+            empty = self.get_empty()
             self.verificar_completitud()
             self.verificar_completitud_anulada()
-            empty = self.get_empty()
+            self.verificar_diagonales_tres()
+            self.verificar_unicidad_fila_columna()
+            self.verificar_unicidad_no_bloqueada()
         return self.state
 
     def get_empty(self):
@@ -284,6 +294,11 @@ class StatePreProcessor:
                             self.state = self.state.transition(Action(i,j+1,'A'))
 
     def verificar_completitud_anulada(self):
+        '''
+        Si la cantidad de ampolletas adyacentes a un bloque es igual al número que tiene 
+        dentro de esta, entonces el resto de espacios se llenan con una x, bloqueando la 
+        posibilidad de colocar una ampolleta dentro de estos.
+        '''
         for i in range(1, self.state.tamano-1):
             for j in range(1, self.state.tamano-1):
                 if self.state.tablero[i][j].is_numeric_block():
@@ -305,3 +320,106 @@ class StatePreProcessor:
                             self.state = self.state.transition(Action(i,j-1,'X'))
                         if self.state.tablero[i][j+1].empty_not_lit():
                             self.state = self.state.transition(Action(i,j+1,'X'))
+
+    def verificar_diagonales_tres(self):
+        '''
+            Si una pared contiene un 3, entonces se llenan con una x los 4 
+            espacios diagonales a esta.
+        '''
+        for i in range(1, self.state.tamano-1):
+            for j in range(1, self.state.tamano-1):
+                if self.state.tablero[i][j].value == 3:
+                    if self.state.tablero[i-1][j-1].is_empty():
+                        self.state = self.state.transition(Action(i-1,j-1,'X'))
+                    if self.state.tablero[i-1][j+1].is_empty():
+                        self.state = self.state.transition(Action(i-1,j+1,'X'))
+                    if self.state.tablero[i+1][j-1].is_empty():
+                        self.state = self.state.transition(Action(i+1,j-1,'X'))
+                    if self.state.tablero[i+1][j+1].is_empty():
+                        self.state = self.state.transition(Action(i+1,j+1,'X'))
+    
+    def verificar_unicidad_fila_columna(self):
+        '''
+            Si un espacio marcado con una x no está iluminado y sólo tiene disponible 
+            un espacio (horizontal o vertical) para colocar una ampolleta, 
+            en ese espacio se debe colocar una. Cabe destacar que la posición de este 
+            espacio puede ser en cualquier distancia, pero no debe estar bloqueado por una pared.
+        '''
+        for i in range(1, self.state.tamano-1):
+            for j in range(1, self.state.tamano-1):
+                if self.state.tablero[i][j].is_blocked():
+                    contador = 0
+                    for k in range(i-1,0,-1):
+                        if self.state.tablero[k][j].is_block():
+                            break
+                        if self.state.tablero[k][j].empty_not_lit():
+                            contador +=1
+                    for k in range(i+1,self.state.tamano-1):
+                        if self.state.tablero[k][j].is_block():
+                            break
+                        if self.state.tablero[k][j].empty_not_lit():
+                            contador +=1
+                    for k in range(j-1,0,-1):
+                        if self.state.tablero[i][k].is_block():
+                            break
+                        if self.state.tablero[i][k].empty_not_lit():
+                            contador +=1
+                    for k in range(j+1,self.state.tamano-1):
+                        if self.state.tablero[i][k].is_block():
+                            break
+                        if self.state.tablero[i][k].empty_not_lit():
+                            contador +=1
+                    if contador == 1:
+                        for k in range(i-1,0,-1):
+                            if self.state.tablero[k][j].is_block():
+                                break
+                            if self.state.tablero[k][j].empty_not_lit():
+                                self.state  = self.state.transition(Action(k,j,'A'))
+                        for k in range(i+1,self.state.tamano-1):
+                            if self.state.tablero[k][j].is_block():
+                                break
+                            if self.state.tablero[k][j].empty_not_lit():
+                                self.state  = self.state.transition(Action(k,j,'A'))
+                        for k in range(j-1,0,-1):
+                            if self.state.tablero[i][k].is_block():
+                                break
+                            if self.state.tablero[i][k].empty_not_lit():
+                                self.state  = self.state.transition(Action(i,k,'A'))
+                        for k in range(j+1,self.state.tamano-1):
+                            if self.state.tablero[i][k].is_block():
+                                break
+                            if self.state.tablero[i][k].empty_not_lit():
+                                self.state  = self.state.transition(Action(i,k,'A'))
+    def verificar_unicidad_no_bloqueada(self):
+        '''
+            regla 5: Si un espacio está vacío, no iluminado y todas los demás espacios en su fila 
+            y columna están iluminados, son una pared o están bloqueados, entonces se coloca 
+            una ampolleta en este espacio.
+        '''
+        for i in range(1, self.state.tamano-1):
+            for j in range(1, self.state.tamano-1):
+                if self.state.tablero[i][j].empty_not_lit():
+                    contador = 0
+                    for k in range(i-1,0,-1):
+                        if self.state.tablero[k][j].is_block():
+                            break
+                        if self.state.tablero[k][j].empty_not_lit():
+                            contador +=1
+                    for k in range(i+1,self.state.tamano-1):
+                        if self.state.tablero[k][j].is_block():
+                            break
+                        if self.state.tablero[k][j].empty_not_lit():
+                            contador +=1
+                    for k in range(j-1,0,-1):
+                        if self.state.tablero[i][k].is_block():
+                            break
+                        if self.state.tablero[i][k].empty_not_lit():
+                            contador +=1
+                    for k in range(j+1,self.state.tamano-1):
+                        if self.state.tablero[i][k].is_block():
+                            break
+                        if self.state.tablero[i][k].empty_not_lit():
+                            contador +=1
+                    if contador == 0:
+                        #print('Aplicando Unicidad No Bloqueada')
+                        self.state = self.state.transition(Action(i,j,'A'))
