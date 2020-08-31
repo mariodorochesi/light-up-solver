@@ -50,6 +50,7 @@ class State:
                 else:
                     self.tablero[int(linea[1])+1][int(linea[2])+1] = Casilla(int(linea[0]))
             self.lista_acciones = list()
+            self.taken_time = 0
         else:
             raise Exception('No se ha pasado por parametro la ruta del archivo que contiene el tablero a resolver.')
     
@@ -68,6 +69,13 @@ class State:
                     nombre = nombre +  ' ' + str(self.tablero[i][j].value)
             nombre = nombre + '\n'
         return nombre
+
+    def get_id(self):
+        id = ''
+        for i in range(1,self.tamano-1):
+            for j in range(1,self.tamano-1):
+                id += str(self.tablero[i][j].value)
+        return id
 
     def copy(self):
         '''
@@ -231,6 +239,28 @@ class State:
                         return False
         return True
 
+    def eval(self):
+        '''
+            (Suma Bloques Adyacentes Bloqueados) * Casillas Iluminadas
+        '''
+        cantidad_casillas_iluminadas = 0
+        suma_bloques_bloqueados = 0
+        for i in range(1, self.tamano-1):
+            for j in range(1, self.tamano-1):
+                if(self.tablero[i][j].is_block()):
+                    if(self.tablero[i-1][j].is_bulb()):
+                        suma_bloques_bloqueados+=1
+                    if(self.tablero[i+1][j].is_bulb()):
+                        suma_bloques_bloqueados+=1
+                    if(self.tablero[i][j-1].is_bulb()):
+                        suma_bloques_bloqueados+=1
+                    if(self.tablero[i][j+1].is_bulb()):
+                        suma_bloques_bloqueados+=1
+                if(self.tablero[i][j].isLit):
+                    cantidad_casillas_iluminadas += 1
+        return suma_bloques_bloqueados * cantidad_casillas_iluminadas
+
+
 
 class StatePreProcessor:
 
@@ -244,7 +274,7 @@ class StatePreProcessor:
             self.verificar_completitud()
             self.verificar_completitud_anulada()
             self.verificar_diagonales_tres()
-            self.verificar_unicidad_fila_columna()
+            #self.verificar_unicidad_fila_columna()
             self.verificar_unicidad_no_bloqueada()
         return self.state
 

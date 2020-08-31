@@ -1,8 +1,6 @@
 import time
-class BFS:
-    '''
-        Clase para aplicar una busqueda Breath First Search
-    '''
+
+class BestFirstSearch:
     def __init__(self, 
                 initial_state,
                 notify_progress = True,
@@ -14,6 +12,8 @@ class BFS:
                 show_initial_instance_name = True):
         # Se define la Pila donde almacenar los estados a visitar
         self.stack = list()
+        # Se define un conjunto para almacenar estados visitados
+        self.visited = set()
         if initial_state.is_final_state():
             print('El estado ingresado ya es solucion')
         if show_initial_instance_name:
@@ -22,7 +22,8 @@ class BFS:
             print('Estado Inicial :')
             print(initial_state)
         # Se inserta el primer elemento en la Pila
-        self.stack.append(initial_state)
+        self.stack.append((initial_state.eval(),initial_state))
+        self.visited.add(initial_state.get_id())
         # Configuracion para encontrar solucion final
         self.show_solution = show_solution
         # Configuracion para mostrar tiempo tomado
@@ -42,7 +43,7 @@ class BFS:
         while(len(self.stack) > 0):
             iter_cont +=1
             # Se obtiene el elemento del comienzo de la cola
-            state = self.stack.pop(0)
+            state = self.stack.pop(0)[1]
             # Si el estado es un estado final valido entonces se finaliza
             if state.is_final_state():
                 if self.show_iterations:
@@ -50,6 +51,7 @@ class BFS:
                 if self.show_solution:
                     print(state)
                 if self.show_execution_time:
+                    state.taken_time = time.time() - start_time
                     print('Se ha necesitado {} segundos para encontrar una solucion'.format(time.time() - start_time))
                 return state
             # Se obtienen todas las acciones posibles para el estado
@@ -58,9 +60,16 @@ class BFS:
             for action in actions:
                 # Se aplica la transicion obteniendo un nuevo estado
                 state_s = state.transition(action)
+                if state_s.get_id() in self.visited:
+                    continue
                 # Si el estado no ha sido visitado
-                self.stack.append(state_s)
+                self.stack.append((state_s.eval(),state_s))
+                self.visited.add(state_s.get_id())
+                self.stack.sort(reverse=True, key= sortFirst)
             if iter_cont % self.notify_iterations == 0 and self.notify_progress:
                 print('Iteracion {}'.format(iter_cont))
                 print(state)
         return None
+
+def sortFirst(val):
+    return val[0]

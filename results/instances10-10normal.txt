@@ -1,0 +1,12 @@
+Instancia : 10-10-normal-puzzle4.txt Tiempo : 9.052353382110596 segundos
+Instancia : 10-10-normal-puzzle2.txt Tiempo : 6.463269472122192 segundos
+Instancia : 10-10-normal-puzzle7.txt Tiempo : 3.8757927417755127 segundos
+Instancia : 10-10-normal-puzzle8.txt Tiempo : 88.11438941955566 segundos
+Instancia : 10-10-normal-puzzle0.txt Tiempo : 88.74209713935852 segundos
+Instancia : 10-10-normal-puzzle3.txt Tiempo : 17.51383638381958 segundos
+Instancia : 10-10-normal-puzzle.txt Tiempo : 0.08220982551574707 segundos
+Instancia : 10-10-normal-puzzle6.txt Tiempo : 0.48996996879577637 segundos
+Instancia : 10-10-normal-puzzle5.txt Tiempo : 0.06172513961791992 segundos
+Instancia : 10-10-normal-puzzle1.txt Tiempo : 91.28056454658508 segundos
+Total Resueltos 10/10
+Tiempo Promedio 30.56762080192566 segundos

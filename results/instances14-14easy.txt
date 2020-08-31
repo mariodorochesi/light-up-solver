@@ -1,0 +1,2 @@
+Instancia : 14-14-easy-puzzle0.txt Tiempo : 1708.0565865039825 segundos
+Instancia : 14-14-easy-puzzle7.txt Tiempo : 0.27535462379455566 segundos
