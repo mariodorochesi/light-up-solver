@@ -19,7 +19,7 @@ for instance in instances:
     pre_processor = StatePreProcessor(state).process_state()
     #print('Pre-Procesado')
     #print(pre_processor)
-    bfs = BFS(pre_processor,show_execution_time=True).solve()
+    bfs = BestFirstSearch(pre_processor,show_execution_time=True).solve()
     if bfs is not None:
         archivo.write('Instancia : {} Tiempo : {} segundos\n'.format(instance,bfs.taken_time))
         print('Solucion')
