@@ -6,7 +6,7 @@ from searching.BestFirstSearch import BestFirstSearch
 from searching.Greedy import Grasp, Greedy
 import os
 
-instances_folder = './instances/10-10/normal/'
+instances_folder = './instances/7-7/easy/'
 
 instances = os.listdir(instances_folder)
 archivo = open('./results/'+instances_folder.replace('.','').replace('/','')+'.txt','w')
