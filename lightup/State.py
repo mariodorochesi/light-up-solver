@@ -74,7 +74,10 @@ class State:
         id = ''
         for i in range(1,self.tamano-1):
             for j in range(1,self.tamano-1):
-                id += str(self.tablero[i][j].value)
+                if self.tablero[i][j].isLit and self.tablero[i][j].value == 'B':
+                    id+='I'
+                else:
+                    id += str(self.tablero[i][j].value)
         return id
 
     def copy(self):
@@ -127,7 +130,7 @@ class State:
                     estado = self.copy().transition(action)
                     if estado.is_valid_state():
                         actions.append(action)
-                        #return actions
+                        return actions
         return actions
 
     def transition(self, action):
@@ -259,6 +262,24 @@ class State:
                 if(self.tablero[i][j].isLit):
                     cantidad_casillas_iluminadas += 1
         return suma_bloques_bloqueados * cantidad_casillas_iluminadas
+
+    def valorated_space(self):
+        cantidad_casillas_iluminadas = 0
+        suma_bloques_bloqueados = 0
+        for i in range(1, self.tamano-1):
+            for j in range(1, self.tamano-1):
+                if(self.tablero[i][j].is_block()):
+                    if(self.tablero[i-1][j].is_bulb()):
+                        suma_bloques_bloqueados+=1
+                    if(self.tablero[i+1][j].is_bulb()):
+                        suma_bloques_bloqueados+=1
+                    if(self.tablero[i][j-1].is_bulb()):
+                        suma_bloques_bloqueados+=1
+                    if(self.tablero[i][j+1].is_bulb()):
+                        suma_bloques_bloqueados+=1
+                if(self.tablero[i][j].isLit):
+                    cantidad_casillas_iluminadas += 1
+        return [suma_bloques_bloqueados, cantidad_casillas_iluminadas]
 
 
 

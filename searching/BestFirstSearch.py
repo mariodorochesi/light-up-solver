@@ -9,7 +9,8 @@ class BestFirstSearch:
                 show_execution_time = False,
                 show_iterations = False,
                 show_initial_state = False,
-                show_initial_instance_name = True):
+                show_initial_instance_name = True,
+                time_limit = 120):
         # Se define la Pila donde almacenar los estados a visitar
         self.stack = list()
         # Se define un conjunto para almacenar estados visitados
@@ -34,6 +35,8 @@ class BestFirstSearch:
         self.notify_iterations = notify_iterations
         # Configuracion para mostrar cantidad de iteraciones para llegar a solucion
         self.show_iterations = show_iterations
+        # Tiempo limite de ejecucion
+        self.time_limit = time_limit
     
     def solve(self):
         # Se define un contador para calcular la cantidad de iteraciones
@@ -41,6 +44,9 @@ class BestFirstSearch:
         # Se toma el tiempo de inicio del programa
         start_time = time.time()
         while(len(self.stack) > 0):
+            if time.time() - start_time > self.time_limit:
+                print('Se ha abortado la solucion por tiempo limite alcanzado.')
+                return None
             iter_cont +=1
             # Se obtiene el elemento del comienzo de la cola
             state = self.stack.pop(0)[1]

@@ -1,0 +1,12 @@
+Instancia : 14-14-normal-puzzle4.txt Tiempo : 1.712186574935913 segundos
+Instancia : 14-14-normal-puzzle7.txt Tiempo : 115.51161766052246 segundos
+Instancia : 14-14-normal-puzzle1.txt Tiempo : 0.8400511741638184 segundos
+Instancia : 14-14-normal-puzzle0.txt Tiempo : 3.756804943084717 segundos
+Instancia : 14-14-normal-puzzle8.txt Tiempo : 1.338529348373413 segundos
+Instancia : 14-14-normal-puzzle6.txt Tiempo : NO RESUELTO segundos
+Instancia : 14-14-normal-puzzle.txt Tiempo : 0.26904869079589844 segundos
+Instancia : 14-14-normal-puzzle3.txt Tiempo : NO RESUELTO segundos
+Instancia : 14-14-normal-puzzle2.txt Tiempo : 6.968052864074707 segundos
+Instancia : 14-14-normal-puzzle5.txt Tiempo : NO RESUELTO segundos
+Total Resueltos 7/10
+Tiempo Promedio 18.62804160799299 segundos

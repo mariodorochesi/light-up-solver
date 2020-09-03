@@ -1,12 +1,12 @@
-Instancia : 10-10-hard-puzzle2.txt Tiempo : 5.9794230461120605 segundos
-Instancia : 10-10-hard-puzzle6.txt Tiempo : 1.0559961795806885 segundos
-Instancia : 10-10-hard-puzzle5.txt Tiempo : 40.88798213005066 segundos
-Instancia : 10-10-hard-puzzle4.txt Tiempo : 7.8388917446136475 segundos
-Instancia : 10-10-hard-puzzle3.txt Tiempo : 2.358931303024292 segundos
-Instancia : 10-10-hard-puzzle7.txt Tiempo : 0.10308337211608887 segundos
-Instancia : 10-10-hard-puzzle.txt Tiempo : 0.2563469409942627 segundos
-Instancia : 10-10-hard-puzzle1.txt Tiempo : 1.309457540512085 segundos
-Instancia : 10-10-hard-puzzle0.txt Tiempo : 1.195408582687378 segundos
-Instancia : 10-10-hard-puzzle8.txt Tiempo : 234.596666097641 segundos
-Total Resueltos 10/10
-Tiempo Promedio 29.558218693733217 segundos
+Instancia : 10-10-hard-puzzle2.txt Tiempo : 1.105419397354126 segundos
+Instancia : 10-10-hard-puzzle6.txt Tiempo : 0.7416820526123047 segundos
+Instancia : 10-10-hard-puzzle5.txt Tiempo : 0.12164115905761719 segundos
+Instancia : 10-10-hard-puzzle4.txt Tiempo : 0.9277346134185791 segundos
+Instancia : 10-10-hard-puzzle3.txt Tiempo : NO RESUELTO segundos
+Instancia : 10-10-hard-puzzle7.txt Tiempo : 0.1442248821258545 segundos
+Instancia : 10-10-hard-puzzle.txt Tiempo : 0.0836179256439209 segundos
+Instancia : 10-10-hard-puzzle1.txt Tiempo : 0.3589932918548584 segundos
+Instancia : 10-10-hard-puzzle0.txt Tiempo : 0.08510184288024902 segundos
+Instancia : 10-10-hard-puzzle8.txt Tiempo : 1.1928699016571045 segundos
+Total Resueltos 9/10
+Tiempo Promedio 0.5290316740671793 segundos

@@ -1,0 +1,12 @@
+Instancia : 14-14-hard-puzzle8.txt Tiempo : 1.3772163391113281 segundos
+Instancia : 14-14-hard-puzzle6.txt Tiempo : 0.27611446380615234 segundos
+Instancia : 14-14-hard-puzzle.txt Tiempo : 12.689168453216553 segundos
+Instancia : 14-14-hard-puzzle5.txt Tiempo : NO RESUELTO segundos
+Instancia : 14-14-hard-puzzle0.txt Tiempo : 0.4245457649230957 segundos
+Instancia : 14-14-hard-puzzle2.txt Tiempo : 5.347248554229736 segundos
+Instancia : 14-14-hard-puzzle3.txt Tiempo : NO RESUELTO segundos
+Instancia : 14-14-hard-puzzle1.txt Tiempo : 5.198913097381592 segundos
+Instancia : 14-14-hard-puzzle4.txt Tiempo : NO RESUELTO segundos
+Instancia : 14-14-hard-puzzle7.txt Tiempo : NO RESUELTO segundos
+Total Resueltos 6/10
+Tiempo Promedio 4.218867778778076 segundos

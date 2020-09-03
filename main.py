@@ -3,9 +3,10 @@ from lightup.Action import Action
 from searching.BFS import BFS
 from searching.DFS import DFS
 from searching.BestFirstSearch import BestFirstSearch
+from searching.Greedy import Grasp, Greedy
 import os
 
-instances_folder = './instances/14-14/easy/'
+instances_folder = './instances/10-10/normal/'
 
 instances = os.listdir(instances_folder)
 archivo = open('./results/'+instances_folder.replace('.','').replace('/','')+'.txt','w')
@@ -18,7 +19,7 @@ for instance in instances:
     pre_processor = StatePreProcessor(state).process_state()
     #print('Pre-Procesado')
     #print(pre_processor)
-    bfs = BestFirstSearch(pre_processor,show_execution_time=True, notify_iterations=1000).solve()
+    bfs = BFS(pre_processor,show_execution_time=True).solve()
     if bfs is not None:
         archivo.write('Instancia : {} Tiempo : {} segundos\n'.format(instance,bfs.taken_time))
         print('Solucion')

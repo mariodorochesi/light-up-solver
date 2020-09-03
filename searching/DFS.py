@@ -12,9 +12,12 @@ class DFS:
                 show_execution_time = False,
                 show_iterations = False,
                 show_initial_state = False,
-                show_initial_instance_name = True):
+                show_initial_instance_name = True,
+                time_limit = 120):
         # Se define la Pila donde almacenar los estados a visitar
         self.stack = list()
+        # Se define un conjunto para almacenar estados visitados
+        self.visited = set()
         if initial_state.is_final_state():
             print('El estado ingresado ya es solucion')
         if show_initial_instance_name:
@@ -24,6 +27,7 @@ class DFS:
             print(initial_state)
         # Se inserta el primer elemento en la Pila
         self.stack.append(initial_state)
+        self.visited.add(initial_state.get_id())
         # Configuracion para encontrar solucion final
         self.show_solution = show_solution
         # Configuracion para mostrar tiempo tomado
@@ -34,6 +38,7 @@ class DFS:
         self.notify_iterations = notify_iterations
         # Configuracion para mostrar cantidad de iteraciones para llegar a solucion
         self.show_iterations = show_iterations
+        self.time_limit = time_limit
     
     def solve(self):
         # Se define un contador para calcular la cantidad de iteraciones
@@ -41,6 +46,9 @@ class DFS:
         # Se toma el tiempo de inicio del programa
         start_time = time.time()
         while(len(self.stack) > 0):
+            if time.time() - start_time > self.time_limit:
+                print('Se ha abortado la solucion por tiempo limite alcanzado.')
+                return None
             iter_cont +=1
             # Se obtiene el elemento del comienzo de la pila
             state = self.stack.pop()
@@ -51,6 +59,7 @@ class DFS:
                 if self.show_solution:
                     print(state)
                 if self.show_execution_time:
+                    state.taken_time = time.time() - start_time
                     print('Se ha necesitado {} segundos para encontrar una solucion'.format(time.time() - start_time))
                 return state
             # Se obtienen todas las acciones posibles para el estado
@@ -59,8 +68,11 @@ class DFS:
             for action in actions:
                 # Se aplica la transicion obteniendo un nuevo estado
                 state_s = state.transition(action)
+                if state_s.get_id() in self.visited:
+                    continue
                 # Si el estado no ha sido visitado
                 self.stack.append(state_s)
+                self.visited.add(state_s.get_id())
             if iter_cont % self.notify_iterations == 0 and self.notify_progress:
                 print('Iteracion {}'.format(iter_cont))
                 print(state)

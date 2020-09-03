@@ -1,0 +1,11 @@
+Instancia : 25-25-normal-puzzle3.txt Tiempo : NO RESUELTO segundos
+Instancia : 25-25-normal-puzzle6.txt Tiempo : NO RESUELTO segundos
+Instancia : 25-25-normal-puzzle1.txt Tiempo : NO RESUELTO segundos
+Instancia : 25-25-normal-puzzle5.txt Tiempo : NO RESUELTO segundos
+Instancia : 25-25-normal-puzzle.txt Tiempo : NO RESUELTO segundos
+Instancia : 25-25-normal-puzzle0.txt Tiempo : NO RESUELTO segundos
+Instancia : 25-25-normal-puzzle4.txt Tiempo : NO RESUELTO segundos
+Instancia : 25-25-normal-puzzle7.txt Tiempo : NO RESUELTO segundos
+Instancia : 25-25-normal-puzzle8.txt Tiempo : NO RESUELTO segundos
+Instancia : 25-25-normal-puzzle2.txt Tiempo : NO RESUELTO segundos
+Total Resueltos 0/10

@@ -11,7 +11,8 @@ class BFS:
                 show_execution_time = False,
                 show_iterations = False,
                 show_initial_state = False,
-                show_initial_instance_name = True):
+                show_initial_instance_name = True,
+                time_limit = 120):
         # Se define la Pila donde almacenar los estados a visitar
         self.stack = list()
         if initial_state.is_final_state():
@@ -33,6 +34,7 @@ class BFS:
         self.notify_iterations = notify_iterations
         # Configuracion para mostrar cantidad de iteraciones para llegar a solucion
         self.show_iterations = show_iterations
+        self.time_limit = time_limit
     
     def solve(self):
         # Se define un contador para calcular la cantidad de iteraciones
@@ -40,6 +42,9 @@ class BFS:
         # Se toma el tiempo de inicio del programa
         start_time = time.time()
         while(len(self.stack) > 0):
+            if time.time() - start_time > self.time_limit:
+                print('Se ha abortado la solucion por tiempo limite alcanzado.')
+                return None
             iter_cont +=1
             # Se obtiene el elemento del comienzo de la cola
             state = self.stack.pop(0)
@@ -51,6 +56,7 @@ class BFS:
                     print(state)
                 if self.show_execution_time:
                     print('Se ha necesitado {} segundos para encontrar una solucion'.format(time.time() - start_time))
+                    state.taken_time = time.time() - start_time
                 return state
             # Se obtienen todas las acciones posibles para el estado
             actions = state.get_actions()

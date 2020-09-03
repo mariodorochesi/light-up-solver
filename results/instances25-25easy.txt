@@ -1,0 +1,12 @@
+Instancia : 25-25-easy-puzzle.txt Tiempo : NO RESUELTO segundos
+Instancia : 25-25-easy-puzzle6.txt Tiempo : NO RESUELTO segundos
+Instancia : 25-25-easy-puzzle3.txt Tiempo : 0.7758769989013672 segundos
+Instancia : 25-25-easy-puzzle1.txt Tiempo : NO RESUELTO segundos
+Instancia : 25-25-easy-puzzle8.txt Tiempo : NO RESUELTO segundos
+Instancia : 25-25-easy-puzzle4.txt Tiempo : NO RESUELTO segundos
+Instancia : 25-25-easy-puzzle7.txt Tiempo : NO RESUELTO segundos
+Instancia : 25-25-easy-puzzle5.txt Tiempo : 71.98837852478027 segundos
+Instancia : 25-25-easy-puzzle0.txt Tiempo : NO RESUELTO segundos
+Instancia : 25-25-easy-puzzle2.txt Tiempo : 1.8509206771850586 segundos
+Total Resueltos 3/10
+Tiempo Promedio 24.8717254002889 segundos
